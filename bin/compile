@@ -34,6 +34,7 @@ echo "-----> Installing the Google Cloud SDK"
 # install our SDK silently
 # (google apparently doesn't really know what silent means)
 $BUILD_DIR/vendor/google-cloud-sdk/install.sh -q
+export PATH="/app/vendor/google-cloud-sdk/bin:\$PATH"
 
 echo $GOOGLE_CREDENTIALS_JSON > $BUILD_DIR/vendor/gcloud-key.json
 gcloud auth activate-service-account --key-file=$BUILD_DIR/vendor/gcloud-key.json
