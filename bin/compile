@@ -36,7 +36,6 @@ echo "-----> Installing the Google Cloud SDK"
 $BUILD_DIR/vendor/google-cloud-sdk/install.sh -q
 
 
-
 echo "------> Generating .profile.d file to generate google-credentials.json at startup"
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF > $BUILD_DIR/.profile.d/heroku-google-cloud.sh
