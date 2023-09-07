@@ -35,11 +35,9 @@ echo "-----> Installing the Google Cloud SDK"
 # (google apparently doesn't really know what silent means)
 $BUILD_DIR/vendor/google-cloud-sdk/install.sh -q
 
-echo $GOOGLE_CREDENTIALS_JSON > app/google-credentials.json
-
-
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF >$BUILD_DIR/.profile.d/heroku-google-cloud.sh
 export PATH="/app/vendor/google-cloud-sdk/bin:\$PATH"
+echo $GOOGLE_CREDENTIALS_JSON > app/google-credentials.json
 gcloud auth activate-service-account --key-file app/google-credentials.json
 EOF
