@@ -43,8 +43,15 @@ export PATH="/app/vendor/google-cloud-sdk/bin:\$PATH"
 if [ -n "\${GOOGLE_CREDENTIALS_JSON:-}" ]; then
   echo "\${GOOGLE_CREDENTIALS_JSON}" > /app/google-credentials.json
   gcloud auth activate-service-account --key-file /app/google-credentials.json
-  echo "-----> Installing gke-gcloud-auth-plugin"
-  gcloud components install gke-gcloud-auth-plugin
 fi
 EOF
 chmod +x $BUILD_DIR/.profile.d/heroku-google-cloud.sh
+
+cat >$BUILD_DIR/bin/install_auth_plugin <<EOF
+#!/bin/sh
+  echo "-----> Installing gke-gcloud-auth-plugin"
+  gcloud components install gke-gcloud-auth-plugin
+EOF
+chmod +x $BUILD_DIR/bin/install_auth_plugin
+
+exit 0
