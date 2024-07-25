@@ -40,12 +40,7 @@ echo "------> Generating .profile.d file to generate google-credentials.json at 
 mkdir -p $BUILD_DIR/.profile.d
 cat <<EOF > $BUILD_DIR/.profile.d/heroku-google-cloud.sh
 export PATH="/app/vendor/google-cloud-sdk/bin:\$PATH"
-if [ -n "\${GOOGLE_CREDENTIALS_JSON:-}" ]; then
-  printf "%s" "\GOOGLE_CREDENTIALS_JSON" | base64 --decode > /app/google-credentials.json
-  gcloud auth activate-service-account --key-file /app/google-credentials.json
-  echo "-----> Installing gke-gcloud-auth-plugin"
-  gcloud components install gke-gcloud-auth-plugin -q
-fi
+gcloud components install gke-gcloud-auth-plugin -q
 EOF
 
 chmod +x $BUILD_DIR/.profile.d/heroku-google-cloud.sh
